@@ -9,6 +9,6 @@ import { Entry } from '../models/entry';
 })
 export class EntryDetailsDialogComponent {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public entry: Entry) {console.log(entry)}
+  constructor(@Inject(MAT_DIALOG_DATA) public entry: Entry) {}
 
 }

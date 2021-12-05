@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FeedHttpService } from './feed-http.service';
-import { Subscription } from 'rxjs';
+import { EntryListHttpService } from './entry-list-http.service';
 import { Entry } from '../models/entry';
 import { MatDialog } from '@angular/material/dialog';
 import { EntryDetailsDialogComponent } from '../entry-details-dialog/entry-details-dialog.component';
@@ -9,11 +8,11 @@ import { RedditPage } from '../models/reddit-page';
 import { RedditResponse } from '../models/reddit-response';
 
 @Component({
-  selector: 'app-feed',
-  templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.scss']
+  selector: 'app-entry-list',
+  templateUrl: './entry-list.component.html',
+  styleUrls: ['./entry-list.component.scss']
 })
-export class FeedComponent implements OnInit {
+export class EntryListComponent implements OnInit {
   redditPageAfterId?: string;
   redditPageBeforeId?: string;
   previousRedditPageAfterId?: string;
@@ -22,7 +21,7 @@ export class FeedComponent implements OnInit {
   entries: Entry[] = [];
   limit: number = 25;
   showedEntries: number = 0;
-  constructor(public entryDetailsDialog: MatDialog, private httpService: FeedHttpService) { }
+  constructor(public entryDetailsDialog: MatDialog, private httpService: EntryListHttpService) { }
 
   ngOnInit(): void {
     this.getEntries(this.limit, this.showedEntries);
@@ -36,7 +35,7 @@ export class FeedComponent implements OnInit {
         this.redditPageAfterId = redditPage.after;
         this.redditPageBeforeId = redditPage.before;
         this.entries = redditPage.children.map((response: RedditResponse<Entry>) => response.data)
-          .map((entry: Entry) => { return { ...entry, created: new Date(1000 * Number(entry.created)) } });
+          .map(this.mapEntryDate);
       }
     )
   }
@@ -60,15 +59,19 @@ export class FeedComponent implements OnInit {
   loadPreviousEntries() {
     this.showedEntries -= Number(this.limit);
     this.showedEntries = Math.max(0, this.showedEntries);
-    this.getEntries(this.limit, this.showedEntries,  this.redditPageBeforeId);
+    this.getEntries(this.limit, this.showedEntries, this.redditPageBeforeId);
   }
 
   loadNextEntries() {
     this.showedEntries += Number(this.limit);
-    this.getEntries(this.limit, this.showedEntries,  undefined, this.redditPageAfterId);
+    this.getEntries(this.limit, this.showedEntries, undefined, this.redditPageAfterId);
   }
 
   isPreviousPageDisabled() {
-    return this.previousRedditPageBeforeId == this.redditPageBeforeId && this.redditPageBeforeId == null
+    return this.previousRedditPageBeforeId == this.redditPageBeforeId && this.redditPageBeforeId == null;
+  }
+
+  private mapEntryDate(entry: Entry): Entry {
+    return { ...entry, created: new Date(1000 * Number(entry.created)) };
   }
 }

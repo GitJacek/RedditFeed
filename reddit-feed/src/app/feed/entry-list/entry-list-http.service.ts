@@ -5,12 +5,11 @@ import { map } from 'rxjs/operators';
 import { RedditPage } from '../models/reddit-page';
 import { environment } from 'src/environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class FeedHttpService {
+@Injectable()
+export class EntryListHttpService {
   baseUrl = environment.redditApiUrl;
   subreddit = 'sweden.json';
+  
   constructor(private http: HttpClient) { }
 
   getEntries(limit: number, showedEntries: number, beforeId?: string, afterId?: string): Observable<RedditPage> {

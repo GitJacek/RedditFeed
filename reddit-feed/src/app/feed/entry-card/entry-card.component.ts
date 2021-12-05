@@ -12,7 +12,11 @@ export class EntryCardComponent {
 
   constructor() { }
 
-  onCardClick() {
+  onCardClick(): void {
     this.cardClick.emit(this.entry);
+  }
+
+  isThumnailUrlValid(): boolean {
+    return this.entry.thumbnail !== 'self' && this.entry.thumbnail !== 'default'
   }
 }

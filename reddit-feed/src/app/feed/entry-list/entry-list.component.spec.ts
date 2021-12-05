@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EntryDetailsDialogComponent } from './entry-details-dialog.component';
+import { EntryListComponent } from './entry-list.component';
 
-describe('EntryDetailsDialogComponent', () => {
-  let component: EntryDetailsDialogComponent;
-  let fixture: ComponentFixture<EntryDetailsDialogComponent>;
+describe('FeedComponent', () => {
+  let component: EntryListComponent;
+  let fixture: ComponentFixture<EntryListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EntryDetailsDialogComponent ]
+      declarations: [ EntryListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EntryDetailsDialogComponent);
+    fixture = TestBed.createComponent(EntryListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

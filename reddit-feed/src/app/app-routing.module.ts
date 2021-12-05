@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FeedComponent } from './feed/feed/feed.component';
+import { EntryListComponent } from './feed/entry-list/entry-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/feed', pathMatch: 'full'},
-  {path: 'feed', component: FeedComponent}
+  {path: 'feed', component: EntryListComponent}
 ];
 
 @NgModule({

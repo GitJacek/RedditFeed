@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FeedComponent } from './feed/feed.component';
+import { EntryListComponent } from './entry-list/entry-list.component';
 import { EntryCardComponent } from './entry-card/entry-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,10 +9,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { EntryDetailsDialogComponent } from './entry-details-dialog/entry-details-dialog.component';
+import { EntryListHttpService } from './entry-list/entry-list-http.service';
 
 @NgModule({
   declarations: [
-    FeedComponent,
+    EntryListComponent,
     EntryCardComponent,
     EntryDetailsDialogComponent
   ],
@@ -24,6 +25,9 @@ import { EntryDetailsDialogComponent } from './entry-details-dialog/entry-detail
     MatDialogModule,
     MatButtonModule,
     MatButtonToggleModule
+  ],
+  providers: [
+    EntryListHttpService
   ]
 })
 export class FeedModule { }

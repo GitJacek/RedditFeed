@@ -14,7 +14,7 @@
                 <mat-card-title>{{entry.title}}</mat-card-title>
                 <mat-card-subtitle>{{entry.author}} on {{entry.created | date: 'medium'}}</mat-card-subtitle>
             </mat-card-header>
-            <img *ngIf="entry.thumbnail !== 'self' && entry.thumbnail !== 'default'" mat-card-lg-image
+            <img class="thumbnail" *ngIf="isThumnailUrlValid()"
                 [src]="entry.thumbnail">
 
         </div>
