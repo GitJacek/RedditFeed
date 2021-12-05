@@ -27,8 +27,8 @@ export class EntryListComponent implements OnInit {
     this.getEntries(this.limit, this.showedEntries);
   }
 
-  getEntries(limit: number, showedEntries: number, beforeId?: string, afterId?: string) {
-    return this.httpService.getEntries(limit, showedEntries, beforeId, afterId).subscribe(
+  getEntries(limit: number, showedEntries: number, beforeId?: string, afterId?: string): void {
+    this.httpService.getEntries(limit, showedEntries, beforeId, afterId).subscribe(
       (redditPage: RedditPage) => {
         this.previousRedditPageAfterId = afterId;
         this.previousRedditPageBeforeId = beforeId;
@@ -40,34 +40,34 @@ export class EntryListComponent implements OnInit {
     )
   }
 
-  onEntryCardClick(entry: Entry) {
+  onEntryCardClick(entry: Entry): void {
     this.openDialog(entry);
   }
 
-  openDialog(entry: Entry) {
+  openDialog(entry: Entry): void {
     this.entryDetailsDialog.open(EntryDetailsDialogComponent, {
       width: '70%',
       data: entry
     });
   }
 
-  onLimitChange(limitChange: MatButtonToggleChange) {
+  onLimitChange(limitChange: MatButtonToggleChange): void {
     this.limit = limitChange.value;
     this.getEntries(this.limit, this.showedEntries, undefined, this.previousRedditPageAfterId);
   }
 
-  loadPreviousEntries() {
+  loadPreviousEntries(): void {
     this.showedEntries -= Number(this.limit);
     this.showedEntries = Math.max(0, this.showedEntries);
     this.getEntries(this.limit, this.showedEntries, this.redditPageBeforeId);
   }
 
-  loadNextEntries() {
+  loadNextEntries(): void {
     this.showedEntries += Number(this.limit);
     this.getEntries(this.limit, this.showedEntries, undefined, this.redditPageAfterId);
   }
 
-  isPreviousPageDisabled() {
+  isPreviousPageDisabled(): boolean {
     return this.previousRedditPageBeforeId == this.redditPageBeforeId && this.redditPageBeforeId == null;
   }
 

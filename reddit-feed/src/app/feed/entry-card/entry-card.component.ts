@@ -17,6 +17,6 @@ export class EntryCardComponent {
   }
 
   isThumnailUrlValid(): boolean {
-    return this.entry.thumbnail !== 'self' && this.entry.thumbnail !== 'default'
+    return this.entry.thumbnail !== 'self' && this.entry.thumbnail !== 'default';
   }
 }
