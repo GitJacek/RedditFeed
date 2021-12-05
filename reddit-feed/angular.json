@@ -105,9 +105,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "reddit-feed"
+  "defaultProject": "reddit-feed",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

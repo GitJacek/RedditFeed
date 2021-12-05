@@ -1,0 +1,16 @@
+<div class="entry-list">
+    <mat-button-toggle-group name="limit" aria-label="limit" [value]="limit.toString()" (change)="onLimitChange($event)">
+        <mat-button-toggle value="5">5</mat-button-toggle>
+        <mat-button-toggle value="10">10</mat-button-toggle>
+        <mat-button-toggle value="25">25</mat-button-toggle>
+    </mat-button-toggle-group>
+    <div *ngFor="let entry of entries">
+        <app-entry-card [entry]="entry" (cardClick)="onEntryCardClick($event)"></app-entry-card>
+    </div>
+</div>
+<button mat-fab [disabled]="isPreviousPageDisabled()" aria-label="Previous" color="primary" class="navigation-button navigation-button-left" (click)="loadPreviousEntries()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+</button>
+  <button mat-fab aria-label="Next" color="primary" class="navigation-button navigation-button-right" (click)="loadNextEntries()">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+</button>

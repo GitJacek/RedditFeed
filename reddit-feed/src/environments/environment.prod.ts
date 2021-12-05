@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  redditApiUrl: 'https://www.reddit.com/r/'
 };
